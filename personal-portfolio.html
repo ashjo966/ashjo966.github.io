@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio | Ashwin Joshi</title>
+    <link rel="icon" type="image/png" href="ProfilePic_circle.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        .project-page-header {
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .back-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .back-link:hover {
+            color: var(--primary);
+        }
+        
+        .project-hero {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            background-color: #111827;
+        }
+        
+        .project-details {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .project-details h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-main);
+        }
+        
+        .project-details .project-tags {
+            margin-bottom: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .project-details .project-tags span {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.35rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero {
+                height: 180px;
+            }
+            .project-details h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Project content styles */
+        .project-section-block {
+            margin-top: 3.5rem;
+            margin-bottom: 3.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .project-section-block p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .project-section-block ul,
+        .project-section-block ol {
+            padding-left: 1.25rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-section-block ul {
+            list-style-type: disc;
+        }
+
+        .project-section-block li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Section header styles with SVG alignment */
+        .project-section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .project-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Results Metrics */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            align-items: stretch;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #ffffff 0%, rgba(249, 250, 251, 0.8) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+            border-color: rgba(234, 88, 12, 0.3);
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .metric-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        pre {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        code {
+            font-family: 'IBM Plex Mono', Consolas, Monaco, monospace;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <header class="project-page-header">
+        <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Portfolio
+        </a>
+    </header>
+
+    <main>
+        <img src="personal_portfolio.png" alt="Personal Portfolio Cover" class="project-hero">
+        
+        <div class="project-details">
+            <h1>
+                <img src="ProfilePic_circle.png" alt="Ashwin Joshi" style="width: 48px; height: 48px; object-fit: contain; border-radius: 50%; border: 2px solid var(--primary);">
+                Personal Portfolio Website
+            </h1>
+
+            <div class="project-tags" style="margin-bottom: 1.25rem; margin-top: -0.5rem;">
+                <span>Vibe Coding</span>
+                <span>AI Development</span>
+                <span>Vanilla HTML/CSS</span>
+                <span>Single Page Application (SPA)</span>
+                <span>Responsive Design</span>
+            </div>
+
+            <div class="project-tools" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 3rem; flex-wrap: wrap;">
+                <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin: 0; white-space: nowrap;">Tools Used:</h3>
+                <div class="tag-cloud">
+                    <span class="tag tool"><img src="Antigravity_logo.png" alt="Antigravity" class="tool-logo"> Antigravity</span>
+                </div>
+            </div>
+
+            <!-- Introduction Section -->
+            <section class="project-section-block">
+                <p>Tools like Antigravity and Claude Code have completely changed the game for Product Managers. By bridging the gap between a great idea and a functional product, these tools empower Product Managers like me to bring our ideas to life with just a few prompts. It wasn't always this easy. Previously, getting a concept from your head to users' hands was frustrating - you needed to find the right freelance developers to build your product, spend money to hire them, and constantly supervise them to ensure it was built without losing your original vision in translation.</p>
+                <p>Now, these AI coding platforms function as my personal developers. It's a massive shift that enables me to move directly from the ideation stage to a live launch, bypassing traditional development bottlenecks and bringing my vision to life faster.</p>
+                <p>When I was contemplating building my own Product Portfolio, I had a rough blueprint in my head that I just needed to bring to life. It was a simple structure—a personalized website which would have the following sections:</p>
+                <ol>
+                    <li><strong>A Homepage</strong> that welcomes visitors and gives a brief introduction about me.</li>
+                    <li><strong>A Resume page</strong> that lists every professional detail about me, including my education, my career to date, the tools I am proficient in, the languages I can speak, and my competencies.</li>
+                    <li><strong>A Projects page</strong> where I can showcase the products I have worked on in my career and the projects I conceptualized to demonstrate my Product Development capabilities.</li>
+                    <li><strong>A Contact page</strong> that recruiters, hiring managers, and anyone else interested in connecting with me can use to reach out personally.</li>
+                </ol>
+                <p>All I needed was Antigravity installed on my personal laptop and about two weekends of dedicated vibe coding to bring this portfolio to life.</p>
+                <p>You can follow the step-by-step process mentioned below to build your own portfolio using Antigravity.</p>
+                <p><strong>And as always, you can use the contact section of this website to reach out to me directly if you have any other questions, or if you are interested in hiring me for your team! :) </strong></p>
+            </section>
+
+            <!-- Website Styling Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <img src="look.png" alt="Website Styling Icon" style="width: 24px; height: 24px; object-fit: contain;">
+                    Styling and Context
+                </h2>
+                <p>I kept in mind that my portfolio was specifically for professional purposes, and its look and feel should reflect that accordingly. The website should not be flashy with too many heavy elements, ensuring it would not take too much time to load. It needed to be lightweight and easy to navigate. Since recruiters and hiring managers are my priority audience, I wanted my portfolio to primarily serve two functions:</p>
+                <ol>
+                    <li>It should showcase my capabilities and work experience.</li>
+                    <li>It should push my CV to recruiters and hiring managers, preferably directly to their email inboxes.</li>
+                </ol>
+                <p>I was also cognizant of the fact that not all recruiters and hiring managers have enough time to go through my portfolio on their workstations. Therefore, the website needed to be equally usable on desktop and mobile, so they could easily navigate it on their phones while on the go.</p>
+                <p>The same thought process is reflected in how I set the context in my prompt:</p>
+                <pre><code>Create a professional portfolio website for myself. My name is Ashwin Joshi, and I am a Product Manager looking to share my background, my career to date, my education, my qualifications, all of the products I have built so far, and new products that I conceptualize with recruiters and hiring managers.
+The website should be in a light theme and professional in nature.
+It should be easily viewable and navigable on both desktop and mobile browsers.
+There should be a banner at the top that contains my name on the left and CTAs to different pages of this portfolio on the right.</code></pre>
+            </section>
+
+            <!-- Homepage Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    Homepage
+                </h2>
+                <p>As already mentioned, the Homepage was to serve as the welcome page for visitors. Since the aim was to minimize the time recruiters and hiring managers spend getting to know me and to make their lives easier, the Homepage had to contain a brief introduction about me, my competencies, and my current job details. It also needed highly visual buttons so that after reading my brief introduction, the visitor has three options:</p>
+                <ol>
+                    <li>Check out my professional career to date in detail.</li>
+                    <li>Check out my projects (both actual and conceptualized) in detail.</li>
+                    <li>Reach out to me.</li>
+                </ol>
+                <p>The same thought went into my prompt for the Homepage. It focuses on my brief introduction and places special emphasis on ease of navigation for visitors:</p>
+                <pre><code>The first page that a visitor reaches when they visit my website, the Homepage, should contain a welcome message at the top, my photo at center stage, my current role (Product Manager at HSBC), and a headlining introduction about myself.
+On scrolling down a little, add a section called "My career so far" that contains a brief description of my career to date.
+This "My career so far" section should also list my core competencies.
+Scrolling down to the bottom of this Homepage, there should be CTA buttons to the following pages of this portfolio:
+1. View my Resume
+2. See my work
+3. Contact me</code></pre>
+            </section>
+
+            <!-- Resume Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Resume
+                </h2>
+                <p>The Resume page took the least amount of time to make since it just lists everything already present in my CV. Consequently, the Resume page is the best place for me to push my CV toward recruiters and hiring managers. The prompt for this page clearly reflects that:</p>
+                <pre><code>The "View my Resume" CTA at the bottom of the Homepage should navigate the visitor to a "Resume" page. This page should contain:
+1. A list of my educational qualifications with the college name, the exact qualification I achieved, my specialisation, and the duration of attending the college in years.
+2. My professional summary, featuring a list of organisations I have worked with to date, each organisation's logo, the duration of working there in months & years, and a long description of what I did in that role and organisation.
+3. A certifications section where I can share my professional certifications, including the name of the professional certification I achieved, the month & year I got it, and the issuing authority.
+4. My list of competencies with generic vector images next to each of them, in a "tags" UX.
+5. My list of tools that I am competent in, with the logo of each tool listed, in a "tags" UX.
+6. My list of languages that I can speak, with a specified proficiency level for each language.
+7. An option to download my resume in PDF format or an option to email my resume PDF directly to the visitor's inbox. If the visitor clicks on download resume, download the resume PDF for them. If the visitor clicks on the option to send the resume directly to their email, prompt them for their email address, ensure it is valid, and then show a message that my resume PDF has been successfully sent. The email integration can be handled later when the website goes live. For now, a mock UX will work.
+Add a "Resume" CTA on the right side of the top banner. Ensure it gets highlighted every time a visitor is on the Resume page, so they know where they are.</code></pre>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                    Projects
+                </h2>
+                <p>The projects page needed to be clean and simple. To generate maximum impact, I decided to go with a "Cards" format on the first page that highlights exactly what product each project was about, which organisation it was for, and which of my core competencies were used. To make it visually attractive, I also decided to add a cover image to each card that matches the theme of the project.</p>
+                <p>Having worked with <a href="https://miro.com/" target="_blank">miro boards</a> in one of my previous projects, I was aware of how capable they are for flowcharting. To give my projects a visual reference of how I did Product Discovery and Solutioning, I also decided to embed miro boards into each Project page:</p>
+                <pre><code>The "See my work" CTA at the bottom of the Homepage should navigate the visitor to the "Projects" page. This page is divided into 2 tabs at the top: projects that I have actually worked on and projects that I am proposing + AI projects.
+On each of these tabs, there will be cards acting as CTAs that link to the respective project pages. The cards will have a cover image at the top, followed by a title, subtitle, and core competency tags.
+Clicking on one of these cards will navigate the user to the respective project page. The project page will have a cover image at the top. This will be the same cover image used on the card. The cover image will be followed by the organisation's logo with the title (same as the card) on the same line, then the project duration, and then the tools used (use the same tag format as in the Resume page's tools section).
+Follow the tools used with an embedded Miro board:
+&lt;Enter miro board embed code here&gt; 
+Below the embedded Miro board, add a text section with the following headers. Each title comes with its own unique vector image:
+1. Problem Statements
+2. Discovery
+3. Solution
+4. Implementation Process
+5. Results
+
+The results section should highlight the impact of the project by mentioning each metric in its own box with the exact metric number at the top in a large font, followed by a header, followed by subtext.
+Add a "Projects" CTA on the right side of the top banner. Ensure it gets highlighted every time a visitor is on the Projects page, so they know where they are.</code></pre>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Contact
+                </h2>
+                <p>The contact section was the easiest to build since it was kept simple with only my contact details:</p>
+                <pre><code>The "Contact me" CTA at the bottom of the Homepage should navigate the visitor to the Contact page. This page contains a link to my LinkedIn profile (https://www.linkedin.com/in/ashjoshi93), my phone number (+91-9765161771), and my email address (ashjo966@gmail.com). The LinkedIn profile link should be clickable and should redirect the visitor to my profile in a new tab of their browser.
+Add a "Contact" CTA on the right side of the top banner. Ensure it gets highlighted every time a visitor is on the Contact page, so they know where they are.</code></pre>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

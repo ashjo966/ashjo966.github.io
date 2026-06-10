@@ -1,0 +1,12 @@
+{
+  "name": "ashwin-joshi-portfolio",
+  "version": "1.0.0",
+  "description": "Personal Portfolio website of Ashwin Joshi",
+  "main": "app.js",
+  "scripts": {
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "resend": "^3.0.0"
+  }
+}

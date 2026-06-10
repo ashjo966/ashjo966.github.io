@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashwin Joshi | Product Manager</title>
+    <link rel="icon" type="image/png" href="ProfilePic_circle.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="navigateTo('home')">
+                <img src="ProfilePic.jpg" alt="Profile" class="nav-profile-pic">
+                <span class="logo-text">Ashwin Joshi</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a id="nav-home" href="javascript:void(0)" onclick="navigateTo('home')">Home</a></li>
+                    <li><a id="nav-resume" href="javascript:void(0)" onclick="navigateTo('resume')">Resume</a></li>
+                    <li><a id="nav-projects" href="javascript:void(0)" onclick="navigateTo('projects')">Projects</a>
+                    </li>
+                    <li><a id="nav-contact" href="javascript:void(0)" onclick="navigateTo('contact')">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Home Section -->
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <div class="profile-img-container">
+                    <!-- We will use a placeholder or local reference for the profile picture -->
+                    <img src="ProfilePic.jpg" alt="Ashwin Joshi" class="profile-img">
+                </div>
+                <div class="greeting-text">Hey there!</div>
+                <h1>I'm Ashwin Joshi</h1>
+                <h2>Product Manager at <img src="HSBC_logo.png" alt="HSBC Logo" class="inline-logo">
+                    <strong>HSBC</strong></h2>
+                <div class="welcome-text">
+                    <p>I help financial and insurance companies transform complex challenges into user-friendly
+                        products. As a Product Manager, I thrive at the crossroads of innovation and execution, focusing
+                        on how technology can enhance our customer's experiences.</p>
+                    <p>My multilingual background has given me a natural ability to adapt and collaborate. My
+                        "off-hours" are a lot like my "on-hours": I'm usually researching the latest AI tools or honing
+                        my Product Management skills. If a tool or framework promises to boost productivity, I've
+                        probably already tried it.</p>
+                </div>
+
+                <div class="career-section">
+                    <div class="career-grid">
+                        <div class="career-text">
+                            <h3>My Career so far</h3>
+                            <p>I’ve always believed in the transformative power of a great product. That realization
+                                struck me early in my career at Capgemini, inspiring me to dedicate my professional life
+                                to product management. Today, I'm an AVP of Product at HSBC, focused on accelerating the
+                                delivery of high-impact solutions for our customers. Before this, I drove digital
+                                transformation as a Senior Digital Product Manager at Wells Fargo by building a
+                                streamlined customer onboarding platform that enhanced data visibility. I also helped
+                                lay the groundwork for Wells Fargo’s AI integration, helping to transform early
+                                technological exploration into practical, day-to-day business solutions.</p>
+                        </div>
+                        <div class="career-competencies">
+                            <ul class="large-competency-list">
+                                <li>Product Management</li>
+                                <li>Product Development</li>
+                                <li>SaaS</li>
+                                <li>Agile Ways of Working</li>
+                                <li>Product Discovery</li>
+                                <li>Product Lifecycle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <button class="btn primary-btn" onclick="navigateTo('resume')">View my Resume</button>
+                    <button class="btn secondary-btn" onclick="navigateTo('projects')">See my work</button>
+                    <button class="btn secondary-btn" onclick="navigateTo('contact')">Contact me</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="page-section">
+            <div class="resume-header">
+                <h2>Resume</h2>
+                <div class="resume-actions">
+                    <button class="btn primary-btn" onclick="downloadResume()">Download Resume</button>
+                    <button class="btn secondary-btn" onclick="toggleEmailModal()">Email Resume</button>
+                </div>
+            </div>
+
+            <div class="resume-grid">
+                <!-- Professional Summary -->
+                <div class="resume-block experience">
+                    <h3>Professional Experience</h3>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <div class="company-info">
+                                <img src="HSBC_logo.png" alt="HSBC Logo" class="company-logo">
+                                <strong>HSBC</strong>
+                            </div>
+                            <span>Aug 2025 - Present</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>AVP, Product</h4>
+                            <p>Key Responsibilities: WIP</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <div class="company-info">
+                                <img src="WF_logo.png" alt="Wells Fargo Logo" class="company-logo">
+                                <strong>Wells Fargo</strong>
+                            </div>
+                            <span>Apr 2024 – Aug 2025</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Senior Digital Product Manager</h4>
+                            <ul>
+                                <li>Spearheading the development of an onboarding platform, "Onboarding as a Service,"
+                                    designed to streamline the onboarding process for Commercial Banking & Corporate
+                                    Investment Banking clients.</li>
+                                <li>Leading the end-to-end product lifecycle, including defining and prioritizing
+                                    capabilities by collaborating with business stakeholders to determine specifications
+                                    and requirements.</li>
+                                <li>Driving innovation by integrating user-centric improvements that enhance the
+                                    platform's effectiveness and overall customer experience. Strategic planning for the
+                                    future expansion of the platform across other business divisions within Wells Fargo
+                                    to support broader organizational transformation goals.</li>
+                                <li>Completed and Delivered a withdrawal capability, that will enable any business
+                                    division within Wells Fargo that utilizes our platform to effectively cancel
+                                    onboarding requests.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <div class="company-info">
+                                <img src="SL_done.png" alt="ServiceLink Logo" class="company-logo">
+                                <strong>Capgemini Invent</strong>
+                            </div>
+                            <span>Apr 2022 – Mar 2024</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Product Manager</h4>
+                            <div class="client-info">
+                                <strong>Client:</strong> ServiceLink
+                            </div>
+                            <ul>
+                                <li>Own the long-term product roadmap and product vision for ServiceLink’s Mortgage
+                                    Processing SaaS product.</li>
+                                <li>Lead a cross functional team of 1 UX, 7 Dev, and 3 QA resources to drive the
+                                    delivery of a product backlog across the entire product lifecycle by gathering
+                                    requirements from all levels of stakeholders, including UI/UX, customer journey
+                                    mapping, and product design.</li>
+                                <li>Initiate discussions with the Product team, Engineering team, and Tech Leads to
+                                    coordinate release planning, MVP planning and host Scrum of Scrums.</li>
+                            </ul>
+                            <div class="metrics">
+                                <strong>Key Metrics:</strong>
+                                <ul>
+                                    <li>Reduced average turnaround times for all orders from origination till
+                                        disbursement from 6 days to 4 days.</li>
+                                    <li>Improved NPS scores given by lenders from +16 to +43 in the first 3 months of
+                                        its introduction.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <div class="company-info">
+                                <img src="hsbc_done.png" alt="HSBC Logo" class="company-logo">
+                                <strong>Capgemini Invent</strong>
+                            </div>
+                            <span>Jan 2020 – Mar 2022</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Senior Product Owner</h4>
+                            <div class="client-info">
+                                <strong>Client:</strong> HSBC
+                            </div>
+                            <ul>
+                                <li>Support the product discovery for HSBC’s mobile banking app using competitor
+                                    analysis and focused interviews, to define the product roadmap and product vision to
+                                    develop card control features for the bank’s customers.</li>
+                                <li>Host product design workshops to design the customer journeys and UI/UX.</li>
+                                <li>Excellent exposure to core Product Management functions such as prioritizing the
+                                    product backlog, creating & grooming user stories, writing acceptance criteria, and
+                                    defining personas.</li>
+                                <li>Successfully launched four journeys: Temporarily block/unblock a card, set travel
+                                    plan, and set a monthly spend limit for the UAE market; report damaged card or
+                                    stolen card for the UK market.</li>
+                            </ul>
+                            <div class="metrics">
+                                <strong>Key Metrics:</strong>
+                                <ul>
+                                    <li>46% adoption rate for monthly spend limit. 18% eligible users utilized the
+                                        temporarily block/unblock card feature at least once, and 8% eligible users
+                                        utilized the set travel plan feature at least once post 30 days of introduction.
+                                    </li>
+                                    <li>55% reduction in calls to customer care hotlines to report a lost card or
+                                        damaged card post 30 days of introduction.</li>
+                                    <li>Increased NPS score specifically for the app from -12 to +16.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <div class="company-info">
+                                <img src="MS_done.png" alt="Morgan Stanley Logo" class="company-logo">
+                                <strong>Capgemini</strong>
+                            </div>
+                            <span>Jun 2017 – Dec 2019</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Product Owner</h4>
+                            <div class="client-info">
+                                <strong>Client:</strong> Morgan Stanley
+                            </div>
+                            <ul>
+                                <li>Participated in the end-to-end conceptualization & delivery of a data transfer &
+                                    data masking tool, "Alcazar", for GDPR compliance on test data.</li>
+                                <li>Collaborated extensively with legal, compliance, and data privacy teams to translate
+                                    complex data privacy requirements into an actionable product roadmap.</li>
+                                <li>Wrote high quality user stories, groomed them with the team and proactively raised
+                                    blockers to ensure timely delivery.</li>
+                                <li>Orchestrated high-velocity product delivery by managing the product backlog,
+                                    authoring detailed user stories, facilitating refinement sessions, and participating
+                                    in sprint ceremonies.</li>
+                            </ul>
+                            <div class="metrics">
+                                <strong>Key Metrics:</strong>
+                                <ul>
+                                    <li>Achieved a 78% positive satisfaction score from internal users regarding the
+                                        modernized UI and enhanced feature set within the first 60 days post-launch.
+                                    </li>
+                                    <li>91% of application owners reported that the synthetic test data generated
+                                        post-masking "met or exceeded expectations" for their development and testing
+                                        needs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-sidebar">
+                    <!-- Education -->
+                    <div class="resume-block education">
+                        <h3>Education</h3>
+                        <div class="timeline-item small">
+                            <h4>Post Graduate Diploma in Management</h4>
+                            <span>Institute for Financial Management and Research Chennai</span>
+                            <span class="date">2015 - 2017</span>
+                        </div>
+                        <div class="timeline-item small">
+                            <h4>Bachelors in Business Administration</h4>
+                            <span>Brihan Maharashtra College of Commerce Pune</span>
+                            <span class="date">2011 - 2014</span>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="resume-block certifications">
+                        <h3>Certifications</h3>
+                        <ul class="cert-list">
+                            <li><strong>Certified ScrumMaster (CSM)</strong> <br> ScrumAlliance | Dec 2020</li>
+                            <li><strong>Certified Scrum Product Owner (CSPO)</strong> <br> ScrumAlliance | Sep 2021</li>
+                            <li><strong>Certified SAFe® 5 Product Owner/Product Manager</strong> <br> Scaled Agile | Aug
+                                2021</li>
+                            <li><strong>Agile Project Management</strong> <br> Google (Coursera) | May 2023</li>
+                            <li><strong>Agile Software Development</strong> <br> University of Minnesota (Coursera) |
+                                Oct 2022</li>
+                        </ul>
+                    </div>
+
+                    <!-- Competencies -->
+                    <div class="resume-block skills">
+                        <h3>Competencies</h3>
+                        <div class="tag-cloud">
+                            <span class="tag"><img src="Product_management.png" alt="Product Management"
+                                    class="tool-logo"> Product Management</span>
+                            <span class="tag"><img src="product_development.png" alt="Product Development"
+                                    class="tool-logo"> Product Development</span>
+                            <span class="tag"><img src="agile.png" alt="Agile" class="tool-logo"> Agile Ways of
+                                Working</span>
+                            <span class="tag"><img src="Discovery.png" alt="Product Discovery" class="tool-logo">
+                                Product Discovery</span>
+                            <span class="tag"><img src="lifecycle.png" alt="Product Lifecycle" class="tool-logo">
+                                Product Lifecycle</span>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="resume-block tools">
+                        <h3>Tools</h3>
+                        <div class="tag-cloud">
+                            <span class="tag tool"><img src="Antigravity_logo.png" alt="Antigravity" class="tool-logo">
+                                Antigravity</span>
+                            <span class="tag tool"><img src="jira.svg" alt="JIRA" class="tool-logo"> JIRA</span>
+                            <span class="tag tool"><img src="azure.png" alt="Azure DevOps" class="tool-logo"> Azure
+                                DevOps</span>
+                            <span class="tag tool"><img src="confluence.png" alt="Confluence" class="tool-logo">
+                                Confluence</span>
+                            <span class="tag tool"><img src="miro.png" alt="Miro" class="tool-logo"> Miro</span>
+                            <span class="tag tool"><img src="figma.png" alt="Figma" class="tool-logo"> Figma</span>
+                            <span class="tag tool"><img src="AdobeXD_logo.png" alt="Adobe XD" class="tool-logo"> Adobe
+                                XD</span>
+                            <span class="tag tool"><img src="zeplin_logo.png" alt="Zeplin" class="tool-logo">
+                                Zeplin</span>
+                            <span class="tag tool"><img src="visio.png" alt="MS Visio" class="tool-logo"> MS
+                                Visio</span>
+                            <span class="tag tool"><img src="notion.png" alt="Notion" class="tool-logo"> Notion</span>
+                            <span class="tag tool"><img src="excel.png" alt="MS Excel" class="tool-logo"> MS
+                                Excel</span>
+                        </div>
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="resume-block languages">
+                        <h3>Languages</h3>
+                        <ul class="lang-list">
+                            <li><strong>English</strong>: Native / Bilingual</li>
+                            <li><strong>Marathi</strong>: Native / Bilingual</li>
+                            <li><strong>Hindi</strong>: Native / Bilingual</li>
+                            <li><strong>German</strong>: Limited working (A1)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="page-section">
+            <h2>Projects</h2>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('worked-on')">Worked On</button>
+                <button class="tab-btn" onclick="switchTab('proposing-ai')">Conceptualized / AI Projects</button>
+            </div>
+            <div class="tab-content active" id="worked-on">
+                <div class="projects-grid">
+                    <!-- Card 1 -->
+                    <div class="project-card" onclick="window.location.href='obaas.html'" style="cursor: pointer;">
+                        <img src="obaas.jpg" alt="Onboarding as a Service (ObaaS)" class="project-img" id="img-obaas">
+                        <div class="project-info">
+                            <h3 class="project-title">
+                                <img src="WF_logo.png" alt="Wells Fargo"
+                                    style="width: 18px; height: 18px; object-fit: contain; border-radius: 2px;">
+                                Onboarding as a Service (ObaaS)
+                            </h3>
+                            <p class="project-desc">Onboarding platform for Wells Fargo customers</p>
+                            <div class="project-tags">
+                                <span>Product Discovery</span>
+                                <span>Customer Onboarding</span>
+                                <span>Platform</span>
+                                <span>Investment Banking</span>
+                                <span>B2B</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="project-card" onclick="window.location.href='mortgage-saas.html'"
+                        style="cursor: pointer;">
+                        <img src="mortgage_saas.jpg" alt="Mortgage SaaS Product" class="project-img"
+                            id="img-servicelink">
+                        <div class="project-info">
+                            <h3 class="project-title">
+                                <img src="servicelink_logo.jpg" alt="ServiceLink"
+                                    style="width: 18px; height: 18px; object-fit: contain; border-radius: 2px;">
+                                Mortgage SaaS Product
+                            </h3>
+                            <p class="project-desc">ServiceLink SaaS product for mortgage processing</p>
+                            <div class="project-tags">
+                                <span>Product Discovery</span>
+                                <span>MVP Planning</span>
+                                <span>Mortgage</span>
+                                <span>Order Management</span>
+                                <span>SaaS</span>
+                                <span>B2B</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="project-card" onclick="window.location.href='card-controls.html'"
+                        style="cursor: pointer;">
+                        <img src="card_controls.jpg" alt="Card controls - mobile banking app" class="project-img"
+                            id="img-cardcontrols">
+                        <div class="project-info">
+                            <h3 class="project-title">
+                                <img src="HSBC_logo.png" alt="HSBC"
+                                    style="width: 18px; height: 18px; object-fit: contain; border-radius: 2px;">
+                                Card controls - mobile banking app
+                            </h3>
+                            <p class="project-desc">Card control features for the HSBC mobile banking app</p>
+                            <div class="project-tags">
+                                <span>Product Discovery</span>
+                                <span>UX design</span>
+                                <span>iOS</span>
+                                <span>Android</span>
+                                <span>Mobile Banking</span>
+                                <span>B2C</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="project-card" onclick="window.location.href='datamasking.html'"
+                        style="cursor: pointer;">
+                        <img src="datamasking.jpg" alt="GDPR Compliant Datamasking tool" class="project-img"
+                            id="img-datamasking">
+                        <div class="project-info">
+                            <h3 class="project-title">
+                                <img src="MS_logo.png" alt="Morgan Stanley"
+                                    style="width: 18px; height: 18px; object-fit: contain; border-radius: 2px;">
+                                GDPR Compliant Datamasking tool
+                            </h3>
+                            <p class="project-desc">Datamasking product for GDPR compliance</p>
+                            <div class="project-tags">
+                                <span>Business Analysis</span>
+                                <span>GDPR</span>
+                                <span>Investment Banking</span>
+                                <span>ETL</span>
+                                <span>B2B</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="proposing-ai">
+                <div class="projects-grid">
+                    <!-- Card 1 -->
+                    <div class="project-card" onclick="window.location.href='personal-portfolio.html'"
+                        style="cursor: pointer;">
+                        <img src="personal_portfolio.png" alt="Personal Portfolio" class="project-img"
+                            id="img-personal-portfolio">
+                        <div class="project-info">
+                            <h3 class="project-title">
+                                <img src="AI.jpg" alt="AI"
+                                    style="width: 18px; height: 18px; object-fit: contain; border-radius: 2px;">
+                                Personal Portfolio
+                            </h3>
+                            <p class="project-desc">Vibecoding my Portfolio using Antigravity</p>
+                            <div class="project-tags">
+                                <span>Vibe Coding</span>
+                                <span>AI Development</span>
+                                <span>Vanilla Stack</span>
+                                <span>SPA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section">
+            <h2>Get in touch with me</h2>
+            <div class="contact-card">
+                <p>I’m currently available for full-time opportunities. Feel free to reach out if you’d like to chat
+                    some time or just to connect!</p>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/ashjoshi93" target="_blank" rel="noopener noreferrer"
+                        class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                        LinkedIn Profile
+                    </a>
+                    <a href="tel:+919765161771" class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                        </svg>
+                        +91-9765161771
+                    </a>
+                    <a href="mailto:ashjo966@gmail.com" class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        ashjo966@gmail.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Email Modal -->
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleEmailModal()">&times;</span>
+            <h2>Email My Resume</h2>
+            <p>Please enter your email address to receive my resume directly to your inbox.</p>
+            <form id="email-form" onsubmit="sendEmail(event)">
+                <div class="form-group">
+                    <label for="visitor-email">Your Email Address</label>
+                    <input type="email" id="visitor-email" required placeholder="example@company.com"
+                        oninvalid="this.setCustomValidity('Invalid email address')"
+                        oninput="this.setCustomValidity('')">
+                </div>
+                <button type="submit" class="btn primary-btn">Send Resume</button>
+            </form>
+            <div id="email-success" class="success-message" style="display: none;">
+                Resume sent successfully! Please check your inbox.
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Vibe Coding Bar -->
+    <div id="vibe-floating-bar" class="vibe-floating-bar">
+        <div class="vibe-bar-content">
+            <span class="vibe-text">
+                This website was built by myself by vibe coding on Google Antigravity.
+                <a href="personal-portfolio.html" class="vibe-cta">Click here to see how.</a>
+            </span>
+            <button id="vibe-dismiss-btn" class="vibe-dismiss-btn" onclick="dismissVibeBar(event)">Dismiss</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

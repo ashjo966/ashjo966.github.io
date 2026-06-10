@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email datetime | Ashwin Joshi</title>
+    <link rel="icon" type="image/png" href="ProfilePic_circle.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        .project-page-header {
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .back-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .back-link:hover {
+            color: var(--primary);
+        }
+        
+        .log-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .log-container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .log-container p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+        
+        .log-table-wrapper {
+            width: 100%;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            background-color: #ffffff;
+            margin-bottom: 2rem;
+        }
+
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .log-table th {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .log-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .log-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .log-table tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        .log-table tbody tr:hover {
+            background-color: var(--card-hover);
+        }
+
+        .log-table td.mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="project-page-header">
+        <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Portfolio
+        </a>
+    </header>
+
+    <main class="log-container">
+        <h1>Email datetime</h1>
+        <p>This table records the email addresses and India Standard Time (IST) timestamps of visitors who have requested Ashwin Joshi's resume.</p>
+        
+        <div class="log-table-wrapper">
+            <table class="log-table">
+                <thead>
+                    <tr>
+                        <th>Email address</th>
+                        <th>Datetime IST</th>
+                    </tr>
+                </thead>
+                <tbody id="log-body">
+                    <!-- Dynamic logs inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="actions">
+            <button onclick="clearLogs()" class="btn secondary-btn">Clear Log</button>
+        </div>
+    </main>
+
+    <script>
+        function loadLogs() {
+            const tbody = document.getElementById('log-body');
+            const emailsList = JSON.parse(localStorage.getItem('resume_emails') || '[]');
+            
+            if (emailsList.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="2" style="text-align: center; color: var(--text-muted); padding: 2rem;">No email requests recorded yet.</td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            emailsList.forEach(item => {
+                const row = document.createElement('tr');
+                
+                const emailCell = document.createElement('td');
+                emailCell.textContent = item.email;
+                
+                const dateCell = document.createElement('td');
+                dateCell.className = 'mono';
+                dateCell.textContent = item.datetime;
+                
+                row.appendChild(emailCell);
+                row.appendChild(dateCell);
+                tbody.appendChild(row);
+            });
+        }
+        
+        function clearLogs() {
+            if (confirm('Are you sure you want to clear the request log?')) {
+                localStorage.removeItem('resume_emails');
+                loadLogs();
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', loadLogs);
+    </script>
+</body>
+</html>

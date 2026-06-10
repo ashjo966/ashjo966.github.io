@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Controls - Mobile App | Ashwin Joshi</title>
+    <link rel="icon" type="image/png" href="ProfilePic_circle.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+    <style>
+        .project-page-header {
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .back-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .back-link:hover {
+            color: var(--primary);
+        }
+        
+        .project-hero {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #f3f4f6;
+        }
+        
+        .project-details {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .project-details h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-main);
+        }
+        
+        .project-details .project-tags {
+            margin-bottom: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .project-details .project-tags span {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.35rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero {
+                height: 150px;
+            }
+            .project-details h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Project content styles */
+        .project-section-block {
+            margin-top: 3.5rem;
+            margin-bottom: 3.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .project-section-block ul {
+            list-style-type: disc;
+            padding-left: 1.25rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-section-block li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Section header styles with SVG alignment */
+        .project-section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .project-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Results Metrics */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            align-items: stretch;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #ffffff 0%, rgba(249, 250, 251, 0.8) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2.25rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .metric-value {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .metric-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .project-attachment {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            background-color: rgba(16, 185, 129, 0.05);
+            border: 1px dashed rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            margin-top: 1rem;
+            color: #059669;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .project-attachment:hover {
+            background-color: rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+            transform: translateY(-2px);
+            color: #047857;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-attachment-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .project-attachment-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .project-attachment-box .project-attachment {
+            margin-top: 0;
+        }
+
+        .project-attachment .download-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .project-attachment:hover .download-icon {
+            transform: translateY(2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="project-page-header">
+        <a href="index.html#projects" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Portfolio
+        </a>
+    </header>
+
+    <main>
+        <img src="card_controls.jpg" alt="Card Controls Cover" class="project-hero">
+        
+        <div class="project-details">
+            <h1>
+                <img src="HSBC_logo.png" alt="HSBC Logo" style="width: 48px; height: 48px; object-fit: contain; border-radius: 6px;">
+                Card controls - mobile banking app
+            </h1>
+
+            <div class="project-tags" style="margin-bottom: 1.25rem; margin-top: -0.5rem;">
+                <span>Product Discovery</span>
+                <span>UX design</span>
+                <span>iOS</span>
+                <span>Android</span>
+                <span>Mobile Banking</span>
+                <span>B2C</span>
+            </div>
+
+            <div class="project-meta" style="margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 1.05rem; font-weight: 500;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>January 2020 – March 2022</span>
+            </div>
+
+            <div class="project-tools" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 3rem; flex-wrap: wrap;">
+                <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin: 0; white-space: nowrap;">Tools Used:</h3>
+                <div class="tag-cloud">
+                    <span class="tag tool"><img src="jira.svg" alt="JIRA" class="tool-logo"> JIRA</span>
+                    <span class="tag tool"><img src="confluence.png" alt="Confluence" class="tool-logo"> Confluence</span>
+                    <span class="tag tool"><img src="AdobeXD_logo.png" alt="Adobe XD" class="tool-logo"> Adobe XD</span>
+                    <span class="tag tool"><img src="figma.png" alt="Figma" class="tool-logo"> Figma</span>
+                    <span class="tag tool"><img src="visio.png" alt="MS Visio" class="tool-logo"> MS Visio</span>
+                    <span class="tag tool"><img src="excel.png" alt="MS Excel" class="tool-logo"> MS Excel</span>
+                </div>
+            </div>
+
+            <div class="miro-embed-container"
+                style="margin: 2rem 0 3rem 0; max-width: 768px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                <iframe width="100%" height="300"
+                    src="https://miro.com/app/live-embed/uXjVHTdf7ME=/?focusWidget=3458764673964261897&embedMode=view_only_without_ui&embedId=156712585185"
+                    frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write"
+                    allowfullscreen></iframe>
+            </div>
+
+            <!-- Problem Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ef4444;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Problem Statements
+                </h2>
+                <ul>
+                    <li>HSBC's retail banking customers lacked on-the-go, self-service security features to manage their debit and credit cards directly within the HSBC mobile banking application.</li>
+                    <li>The absence of modern card controls forced users to rely on customer support for routine requests, driving up call center volumes and operational costs.</li>
+                    <li>This outdated banking experience generated frequent complaints, negatively impacting HSBC’s market position as a customer-centric bank across the world.</li>
+                </ul>
+            </section>
+
+            <!-- Discovery Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    Discovery
+                </h2>
+                <ul>
+                    <li>Executed an in-depth analysis of major retail mobile banking applications across leading private banks in India to identify feature gaps and establish industry standards.</li>
+                    <li>Conducted structured interviews with customer service executives working in HSBC branches across India, the UK, and the Middle East to pinpoint credit card pain points and banking experience in general.</li>
+                    <li>Analyzed and documented historical credit card attrition metrics across Retail and High-Net-Worth Individual (HNI) segments to build a compelling funding case for mobile app.</li>
+                </ul>
+                <div class="project-attachment-box">
+                    <span class="project-attachment-title">Competitive Analysis of mobile banking app features across all major Indian private banks</span>
+                    <a href="HSBC_Competitive%20Landscape%20and%20OKR.xlsx" class="project-attachment" download>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #10b981;"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        <span>HSBC Competitive Landscape & OKR.xlsx</span>
+                        <svg class="download-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #10b981; margin-left: 0.25rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Solution Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    Solution
+                </h2>
+                <ul>
+                    <li>Partnered with senior product leadership to pitch strategic mobile banking enhancements, successfully securing executive funding for the initiative.</li>
+                    <li>Played a pivotal role in defining a comprehensive product roadmap spanning the UK, Middle East, India, Hong Kong, and Singapore markets.</li>
+                    <li>Collaborated closely with UX/UI leads to develop high-fidelity, visually compelling prototypes utilized as strategic visual aids during funding pitches.</li>
+                </ul>
+            </section>
+
+            <!-- Implementation Section -->
+            <section class="project-section-block">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    Implementation
+                </h2>
+                <ul>
+                    <li>Worked as Product Owner for the end-to-end delivery of core card control journeys in the UAE market, including temporary block/unblock, travel plan configurations, and monthly spend limits for both debit and credit cards.</li>
+                    <li>Following the successful UAE rollout, spearheaded the development of critical security workflows for the UK market, including "report damaged/stolen" and replacement card ordering features.</li>
+                    <li>Managed the product backlog, authored user stories, facilitated engineering refinement sessions, validated sprint deliverables, and actively participated in all agile ceremonies.</li>
+                    <li>Orchestrated collaborative sessions with UX/UI designers and engineering architects to map customer journeys and design scalable wireframes.</li>
+                </ul>
+            </section>
+
+            <!-- Results Section -->
+            <section class="project-section-block" style="margin-bottom: 5rem;">
+                <h2 class="project-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #10b981;"><path d="m22 7-8.5 8.5-5-5L2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                    Results
+                </h2>
+                <div class="results-grid">
+                    <div class="metric-card">
+                        <span class="metric-value">55%</span>
+                        <span class="metric-label">Support Call Reduction</span>
+                        <p class="metric-desc">Achieved a 55% reduction in calls to customer care hotlines to report lost or damaged cards within 30 days of launch.</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">46%</span>
+                        <span class="metric-label">Monthly spend limit</span>
+                        <p class="metric-desc">46% adoption rate for set a monthly spend limit on cards feature in UAE post 30 days of introduction</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">18%</span>
+                        <span class="metric-label">Temp Block/Unblock</span>
+                        <p class="metric-desc">18% adoption rate for temporary block & unblock card feature in UAE post 30 days of introduction</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">8%</span>
+                        <span class="metric-label">Travel plan</span>
+                        <p class="metric-desc">8% adoption rate for set a travel plan on your card feature in UAE post 30 days of introduction</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">+16</span>
+                        <span class="metric-label">Net Promoter Score</span>
+                        <p class="metric-desc">Successfully increased the mobile app's dedicated Net Promoter Score (NPS) from -12 to +16.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
