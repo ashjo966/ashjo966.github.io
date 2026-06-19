@@ -84,8 +84,8 @@ function switchTab(tabId) {
 // Resume Actions
 function downloadResume() {
     const link = document.createElement('a');
-    link.href = 'Ashwin_CV.pdf';
-    link.download = 'Ashwin_CV.pdf';
+    link.href = 'AshwinJoshi_CV.pdf';
+    link.download = 'AshwinJoshi_CV.pdf';
     link.click();
 }
 
@@ -103,7 +103,7 @@ function toggleEmailModal() {
     }
 }
 
-// Email Sending using Serverless Netlify Function & Resend
+// Email Sending using Nodemailer + Render Server
 function sendEmail(event) {
     event.preventDefault();
     const email = document.getElementById('visitor-email').value;
@@ -115,18 +115,18 @@ function sendEmail(event) {
     btn.innerText = 'Sending...';
     btn.disabled = true;
 
-    // Call the serverless function endpoint
-    fetch('/api/send-email', {
+    // Call the Render backend endpoint
+    fetch('https://portfolio-backend-9nex.onrender.com/send-resume', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email: email })
+        body: JSON.stringify({ visitor_email: email })
     })
     .then(async response => {
         const data = await response.json();
         if (!response.ok) {
-            throw new Error(data.error || 'Failed to send email');
+            throw new Error(data.message || 'Failed to send email');
         }
         return data;
     })
