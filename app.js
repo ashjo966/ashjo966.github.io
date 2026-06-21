@@ -138,23 +138,6 @@ function sendEmail(event) {
         successMsg.style.color = '#3fb950'; // Green success color
         successMsg.style.borderColor = '#2ea043';
 
-        // Save the email and current time in IST (local logs)
-        const options = {
-            timeZone: 'Asia/Kolkata',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        };
-        const formatter = new Intl.DateTimeFormat('en-GB', options);
-        const formattedDate = formatter.format(new Date()).replace(',', '');
-        
-        const emailsList = JSON.parse(localStorage.getItem('resume_emails') || '[]');
-        emailsList.push({ email: email, datetime: formattedDate });
-        localStorage.setItem('resume_emails', JSON.stringify(emailsList));
 
         // Close modal after 3 seconds
         setTimeout(() => {

@@ -135,45 +135,48 @@
         </div>
 
         <div class="actions">
-            <button onclick="clearLogs()" class="btn secondary-btn">Clear Log</button>
+            <a href="https://portfolio-backend-9nex.onrender.com/download-excel" class="btn primary-btn" download="Portfolio_email.xlsx">Download Excel Log</a>
         </div>
     </main>
 
     <script>
-        function loadLogs() {
+        async function loadLogs() {
             const tbody = document.getElementById('log-body');
-            const emailsList = JSON.parse(localStorage.getItem('resume_emails') || '[]');
-            
-            if (emailsList.length === 0) {
+            try {
+                const response = await fetch('https://portfolio-backend-9nex.onrender.com/get-emails');
+                const result = await response.json();
+                
+                if (!result.success || !result.data || result.data.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="2" style="text-align: center; color: var(--text-muted); padding: 2rem;">No email requests recorded yet.</td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                tbody.innerHTML = '';
+                result.data.forEach(item => {
+                    const row = document.createElement('tr');
+                    
+                    const emailCell = document.createElement('td');
+                    emailCell.textContent = item.email;
+                    
+                    const dateCell = document.createElement('td');
+                    dateCell.className = 'mono';
+                    dateCell.textContent = item.datetime;
+                    
+                    row.appendChild(emailCell);
+                    row.appendChild(dateCell);
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching logs:', error);
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="2" style="text-align: center; color: var(--text-muted); padding: 2rem;">No email requests recorded yet.</td>
+                        <td colspan="2" style="text-align: center; color: var(--text-muted); padding: 2rem;">Failed to load logs. Error: ${error.message}</td>
                     </tr>
                 `;
-                return;
-            }
-            
-            tbody.innerHTML = '';
-            emailsList.forEach(item => {
-                const row = document.createElement('tr');
-                
-                const emailCell = document.createElement('td');
-                emailCell.textContent = item.email;
-                
-                const dateCell = document.createElement('td');
-                dateCell.className = 'mono';
-                dateCell.textContent = item.datetime;
-                
-                row.appendChild(emailCell);
-                row.appendChild(dateCell);
-                tbody.appendChild(row);
-            });
-        }
-        
-        function clearLogs() {
-            if (confirm('Are you sure you want to clear the request log?')) {
-                localStorage.removeItem('resume_emails');
-                loadLogs();
             }
         }
         
